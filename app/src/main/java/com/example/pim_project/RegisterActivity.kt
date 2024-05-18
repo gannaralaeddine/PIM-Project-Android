@@ -11,14 +11,11 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
-import com.example.pim_project.utils.RetrofitClient
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Date
 
 class RegisterActivity : AppCompatActivity()
 {
@@ -40,7 +37,6 @@ class RegisterActivity : AppCompatActivity()
 
 
     //Retrofit
-    private lateinit var apiInterface: ApiInterface
     internal var compositeDisposable = CompositeDisposable()
 
     override fun onStop() {
@@ -56,10 +52,8 @@ class RegisterActivity : AppCompatActivity()
 
 
 // To enable the back button in your app use
-        actionBar?.setHomeButtonEnabled(true);
-        actionBar?.setDisplayHomeAsUpEnabled(true);
-
-        val datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Select birth date").build()
+        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
 
 // Mapping TextInput
         txtInputEmail = findViewById(R.id.register_textInput_email)
@@ -192,7 +186,7 @@ class RegisterActivity : AppCompatActivity()
 
     private fun checkFields(): Boolean
     {
-        if (editTextEmail.text.toString().isEmpty())
+        if (editTextEmail.text.toString().trim().isEmpty())
         {
             txtInputEmail.error = "Field must not be empty !"
             return false
@@ -206,35 +200,35 @@ class RegisterActivity : AppCompatActivity()
         }
 
 
-        if (editTextFirstname.text.toString().isEmpty())
+        if (editTextFirstname.text.toString().trim().isEmpty())
         {
             txtInputFirstname.error = "Field must not be empty !"
             return false
         }
 
 
-        if (editTextLastname.text.toString().isEmpty())
+        if (editTextLastname.text.toString().trim().isEmpty())
         {
             txtInputLastname.error = "Field must not be empty !"
             return false
         }
 
 
-        if (editTextEspritIdentifier.text.toString().isEmpty())
+        if (editTextEspritIdentifier.text.toString().trim().isEmpty())
         {
             txtInputEspritIdentifier.error = "Field must not be empty !"
             return false
         }
 
 
-        if (editTextEspritIdentifier.text.toString().length != 10)
+        if (editTextEspritIdentifier.text.toString().trim().length != 10)
         {
             txtInputEspritIdentifier.error = "Identifier must have 10 characters !"
             return false
         }
 
 
-        if (editTextClassroom.text.toString().isEmpty())
+        if (editTextClassroom.text.toString().trim().isEmpty())
         {
             txtInputEspritClassroom.error = "Field must not be empty !"
             return false

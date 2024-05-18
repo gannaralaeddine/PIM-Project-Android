@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -53,11 +54,7 @@ class ForgotPasswordActivity : AppCompatActivity()
         }
 
         findViewById<Button>(R.id.btn_forgotPassword_send).setOnClickListener {
-            if( editTextEmail.text.trim().length == 0 )
-            {
-                txtInputEmail.error = "Must not be empty"
-            }
-            else
+            if(checkFields())
             {
                 forgotPassword(editTextEmail.text.trim().toString(), getRandomNumberString())
             }
@@ -79,7 +76,7 @@ class ForgotPasswordActivity : AppCompatActivity()
         return true
     }
 
-    fun forgotPassword(email: String, code: String)
+    private fun forgotPassword(email: String, code: String)
     {
         val retrofitBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -118,5 +115,28 @@ class ForgotPasswordActivity : AppCompatActivity()
             }
 
         })
+    }
+
+    private fun checkFields(): Boolean
+    {
+        if (editTextEmail.text.toString().trim().isEmpty()) {
+            txtInputEmail.error = "Field must not be empty !"
+            return false
+        }
+        else
+        {
+            txtInputEmail.error = null
+        }
+
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(editTextEmail.text.toString()).matches()) {
+            txtInputEmail.error = "E-mail not valid !"
+            return false
+        }
+        else
+        {
+            txtInputEmail.error = null
+        }
+        return true
     }
 }

@@ -11,7 +11,7 @@ object RetrofitClient
     fun getInstance(): Retrofit
     {
         if (instance == null)
-            instance = Retrofit.Builder().baseUrl("http://192.168.1.246:5000/")
+            instance = Retrofit.Builder().baseUrl(Conf.BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

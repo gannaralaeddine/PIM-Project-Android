@@ -19,8 +19,8 @@ class SplashScreenActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        supportActionBar?.hide()
 
-        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
 
         // This is used to hide the status bar and make
         // the splash screen as a full screen activity.
@@ -28,6 +28,10 @@ class SplashScreenActivity : AppCompatActivity()
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
+
+        sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
+
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.

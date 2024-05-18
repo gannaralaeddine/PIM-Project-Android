@@ -4,16 +4,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log.e
 import android.util.Patterns
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.pim_project.model.LoginRequest
 import com.example.pim_project.model.ResponseUser
-import com.example.pim_project.model.User
 import com.example.pim_project.utils.ApiInterface
 import com.example.pim_project.utils.RetrofitClient
 import com.google.android.material.textfield.TextInputLayout
@@ -49,6 +46,7 @@ class LoginActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setTitle(R.string.login)
 
         //Init Shared Preferences
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
@@ -130,7 +128,7 @@ class LoginActivity : AppCompatActivity()
     }
 
     private fun checkFields(): Boolean {
-        if (editTextEmail.text.toString().isEmpty()) {
+        if (editTextEmail.text.toString().trim().isEmpty()) {
             txtInputEmail.error = "Field must not be empty !"
             return false
         }
