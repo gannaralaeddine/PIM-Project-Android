@@ -3,7 +3,6 @@ package com.example.pim_project
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log.e
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +11,6 @@ import androidx.core.widget.doOnTextChanged
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import com.google.android.material.textfield.TextInputLayout
-import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,14 +33,6 @@ class RegisterActivity : AppCompatActivity()
     private lateinit var editTextPassword: EditText
     private lateinit var editTextConfirmPassword: EditText
 
-
-    //Retrofit
-    internal var compositeDisposable = CompositeDisposable()
-
-    override fun onStop() {
-        compositeDisposable.clear()
-        super.onStop()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -75,11 +65,11 @@ class RegisterActivity : AppCompatActivity()
         editTextClassroom = findViewById(R.id.register_class)
 
 
-        // Check text input
+// Check text input
         editTextEmail.doOnTextChanged { text, start, before, count ->
             if (text!!.length > 50)
             {
-                txtInputEmail.error = "No More Remove one character please!"
+                txtInputEmail.error = getString(R.string.msg_no_more_remove_one_character_please)
             }
             else
             {
@@ -90,7 +80,7 @@ class RegisterActivity : AppCompatActivity()
         editTextFirstname.doOnTextChanged { text, start, before, count ->
             if (text!!.length > 20)
             {
-                txtInputFirstname.error = "No More Remove one character please!"
+                txtInputFirstname.error = getString(R.string.msg_no_more_remove_one_character_please)
             }
             else
             {
@@ -101,7 +91,7 @@ class RegisterActivity : AppCompatActivity()
         editTextLastname.doOnTextChanged { text, start, before, count ->
             if (text!!.length > 20)
             {
-                txtInputLastname.error = "No More Remove one character please!"
+                txtInputLastname.error = getString(R.string.msg_no_more_remove_one_character_please)
             }
             else
             {
@@ -112,7 +102,7 @@ class RegisterActivity : AppCompatActivity()
         editTextEspritIdentifier.doOnTextChanged { text, start, before, count ->
             if (text!!.length != 10)
             {
-                txtInputEspritIdentifier.error = "Identifier must have 10 characters !"
+                txtInputEspritIdentifier.error = getString(R.string.msg_identifier_must_have_10_characters)
             }
             else
             {
@@ -123,7 +113,7 @@ class RegisterActivity : AppCompatActivity()
         editTextClassroom.doOnTextChanged { text, start, before, count ->
             if (text!!.length > 10)
             {
-                txtInputEspritClassroom.error = "No More Remove one character please!"
+                txtInputEspritClassroom.error = getString(R.string.msg_no_more_remove_one_character_please)
             }
             else
             {
@@ -134,7 +124,7 @@ class RegisterActivity : AppCompatActivity()
         editTextPassword.doOnTextChanged { text, start, before, count ->
             if (text!!.length < 6)
             {
-                txtInputPassword.error = "Password must have at least 6 characters !"
+                txtInputPassword.error = getString(R.string.msg_password_must_have_at_least_6_characters)
             }
             else
             {
@@ -156,16 +146,15 @@ class RegisterActivity : AppCompatActivity()
 
     private fun register(email: String, firstName: String, lastName: String, espritIdentifier: String, classroom: String, password: String)
     {
-        val api = ApiInterface.create()
 
-        api.registerUser(email, firstName, lastName, espritIdentifier, classroom, password)
+        ApiInterface.create().registerUser(email, firstName, lastName, espritIdentifier, classroom, password)
             .enqueue(object: Callback<ResponseUser> {
 
                 override fun onResponse(call: Call<ResponseUser>, response: Response<ResponseUser>) {
 
                     if (response.code() == 201)
                     {
-                        Toast.makeText(this@RegisterActivity, "Successfully registered", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity, getString(R.string.msg_successfully_registered), Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         finish()
                         return
@@ -173,7 +162,7 @@ class RegisterActivity : AppCompatActivity()
 
                     if (response.code() == 302)
                     {
-                        Toast.makeText(this@RegisterActivity, "User already exist !", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity, getString(R.string.msg_user_already_exist), Toast.LENGTH_SHORT).show()
                         return
                     }
                 }
@@ -188,49 +177,49 @@ class RegisterActivity : AppCompatActivity()
     {
         if (editTextEmail.text.toString().trim().isEmpty())
         {
-            txtInputEmail.error = "Field must not be empty !"
+            txtInputEmail.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(editTextEmail.text.toString()).matches())
         {
-            txtInputEmail.error = "E-mail not valid !"
+            txtInputEmail.error = getString(R.string.msg_email_not_valid)
             return false
         }
 
 
         if (editTextFirstname.text.toString().trim().isEmpty())
         {
-            txtInputFirstname.error = "Field must not be empty !"
+            txtInputFirstname.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (editTextLastname.text.toString().trim().isEmpty())
         {
-            txtInputLastname.error = "Field must not be empty !"
+            txtInputLastname.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (editTextEspritIdentifier.text.toString().trim().isEmpty())
         {
-            txtInputEspritIdentifier.error = "Field must not be empty !"
+            txtInputEspritIdentifier.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (editTextEspritIdentifier.text.toString().trim().length != 10)
         {
-            txtInputEspritIdentifier.error = "Identifier must have 10 characters !"
+            txtInputEspritIdentifier.error = getString(R.string.msg_identifier_must_have_10_characters)
             return false
         }
 
 
         if (editTextClassroom.text.toString().trim().isEmpty())
         {
-            txtInputEspritClassroom.error = "Field must not be empty !"
+            txtInputEspritClassroom.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
@@ -238,28 +227,28 @@ class RegisterActivity : AppCompatActivity()
 // Passwords check
         if (editTextPassword.text.toString().isEmpty())
         {
-            txtInputPassword.error = "Field must not be empty !"
+            txtInputPassword.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (editTextConfirmPassword.text.toString().isEmpty())
         {
-            txtInputConfirmPassword.error = "Field must not be empty !"
+            txtInputConfirmPassword.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
 
 
         if (editTextPassword.text.toString().length < 6)
         {
-            txtInputPassword.error = "Password must have at least 6 characters !"
+            txtInputPassword.error = getString(R.string.msg_password_must_have_at_least_6_characters)
             return false
         }
 
 
         if (editTextConfirmPassword.text.toString().length < 6)
         {
-            txtInputConfirmPassword.error = "Password must have at least 6 characters !"
+            txtInputConfirmPassword.error = getString(R.string.msg_password_must_have_at_least_6_characters)
             return false
         }
 
@@ -267,8 +256,7 @@ class RegisterActivity : AppCompatActivity()
 
         if (editTextPassword.text.toString() != editTextConfirmPassword.text.toString())
         {
-            e("pass", editTextPassword.text.toString() + " " + editTextConfirmPassword.text.toString())
-            txtInputConfirmPassword.error = "Passwords don't match !"
+            txtInputConfirmPassword.error = getString(R.string.msg_passwords_dont_match)
             return false
         }
         else

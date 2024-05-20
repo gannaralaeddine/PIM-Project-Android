@@ -120,7 +120,7 @@ class ForgotPasswordActivity : AppCompatActivity()
     private fun checkFields(): Boolean
     {
         if (editTextEmail.text.toString().trim().isEmpty()) {
-            txtInputEmail.error = "Field must not be empty !"
+            txtInputEmail.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
         else
@@ -130,7 +130,7 @@ class ForgotPasswordActivity : AppCompatActivity()
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(editTextEmail.text.toString()).matches()) {
-            txtInputEmail.error = "E-mail not valid !"
+            txtInputEmail.error = getString(R.string.msg_email_not_valid)
             return false
         }
         else

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pim_project.UpdateProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/toolbar" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/edit_profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_account"
+            app:civ_border_color="@color/black"
+            app:tint="@color/mainText" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfile_txtInput_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:errorEnabled="true"
+            android:hint="@string/e_mail"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="50">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:inputType="textEmailAddress"
+                android:maxLength="51"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfile_txtInput_firstname"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:errorEnabled="true"
+            android:hint="@string/firstname"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="20" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_edit_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:maxLength="21"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfile_txtInput_lastname"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:errorEnabled="true"
+            android:hint="@string/lastname"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="20" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_edit_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:maxLength="21"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfile_txtInput_identifier"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:errorEnabled="true"
+            android:hint="@string/esprit_identifier"
+            app:endIconMode="clear_text"
+            app:counterEnabled="true"
+            app:counterMaxLength="10" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_edit_identifier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_key"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:maxLength="11"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editProfile_txtInput_class"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/classroom"
+            app:counterMaxLength="10">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editProfile_edit_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_calendar"
+                android:drawablePadding="10dp"
+                android:inputType="text"
+                android:maxLength="11"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_editProfile_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/save" />
+
+    </LinearLayout>
+
+</ScrollView>

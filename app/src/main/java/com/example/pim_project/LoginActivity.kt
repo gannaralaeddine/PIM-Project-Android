@@ -12,9 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
-import com.example.pim_project.utils.RetrofitClient
 import com.google.android.material.textfield.TextInputLayout
-import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,25 +20,15 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity()
 {
     private lateinit var txtInputEmail: TextInputLayout
-    private lateinit var txtInputpassword: TextInputLayout
+    private lateinit var txtInputPassword: TextInputLayout
     private lateinit var editTextEmail: EditText
-    private lateinit var editTextpassword: EditText
-    private lateinit var btn_login: Button
+    private lateinit var editTextPassword: EditText
+    private lateinit var btnLogin: Button
     private lateinit var rememberMe: CheckBox
 
 // Shared Preferences
-    lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
-
-
-    //Retofit
-    lateinit var apiInterface: ApiInterface
-    internal var compositeDisposable = CompositeDisposable()
-
-    override fun onStop() {
-        compositeDisposable.clear()
-        super.onStop()
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,16 +40,13 @@ class LoginActivity : AppCompatActivity()
         sharedPreferences = getSharedPreferences("prefs", MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
-        //Init API
-        val retrofit = RetrofitClient.getInstance()
-        apiInterface = retrofit.create(ApiInterface::class.java)
 
 //Finding Views
         txtInputEmail = findViewById(R.id.signIn_txtInput_email)
-        txtInputpassword = findViewById(R.id.signIn_txtInput_password)
+        txtInputPassword = findViewById(R.id.signIn_txtInput_password)
         editTextEmail = findViewById(R.id.signIn_email)
-        editTextpassword = findViewById(R.id.signIn_password)
-        btn_login = findViewById(R.id.btn_signIn_login)
+        editTextPassword = findViewById(R.id.signIn_password)
+        btnLogin = findViewById(R.id.btn_signIn_login)
         rememberMe = findViewById(R.id.signIn_rememberMe)
 
 
@@ -73,20 +58,19 @@ class LoginActivity : AppCompatActivity()
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        btn_login.setOnClickListener{
+        btnLogin.setOnClickListener{
 
             if (checkFields())
             {
-                loginUser(editTextEmail.text.toString(), editTextpassword.text.toString())
+                loginUser(editTextEmail.text.toString(), editTextPassword.text.toString())
             }
         }
     }
 
     private fun loginUser(email: String, password: String)
     {
-        val api = ApiInterface.create()
 
-        api.loginUser(email, password).enqueue(object: Callback<ResponseUser> {
+        ApiInterface.create().loginUser(email, password).enqueue(object: Callback<ResponseUser> {
 
             override fun onResponse(call: Call<ResponseUser>, res: Response<ResponseUser>) {
 
@@ -94,10 +78,11 @@ class LoginActivity : AppCompatActivity()
                 {
                     editor.putBoolean("isChecked", rememberMe.isChecked)
                     editor.putString("token", res.body()!!.token)
-                    editor.putString("idUser", res.body()!!.user._id)
+                    editor.putString("userId", res.body()!!.user._id)
                     editor.apply()
 
-                    Toast.makeText(this@LoginActivity, "Successfully connected", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, getString(R.string.msg_welcome), Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     return
                 }
 
@@ -129,7 +114,7 @@ class LoginActivity : AppCompatActivity()
 
     private fun checkFields(): Boolean {
         if (editTextEmail.text.toString().trim().isEmpty()) {
-            txtInputEmail.error = "Field must not be empty !"
+            txtInputEmail.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
         else
@@ -139,7 +124,7 @@ class LoginActivity : AppCompatActivity()
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(editTextEmail.text.toString()).matches()) {
-            txtInputEmail.error = "E-mail not valid !"
+            txtInputEmail.error = getString(R.string.msg_email_not_valid)
             return false
         }
         else
@@ -147,24 +132,24 @@ class LoginActivity : AppCompatActivity()
             txtInputEmail.error = null
         }
 
-        if (editTextpassword.text.toString().isEmpty())
+        if (editTextPassword.text.toString().isEmpty())
         {
-            txtInputpassword.error = "Field must not be empty !"
+            txtInputPassword.error = getString(R.string.msg_field_must_not_be_empty)
             return false
         }
         else
         {
-            txtInputpassword.error = null
+            txtInputPassword.error = null
         }
 
-        if (editTextpassword.text.toString().length < 6)
+        if (editTextPassword.text.toString().length < 6)
         {
-            txtInputpassword.error = "Password must have at least 6 characters !"
+            txtInputPassword.error = getString(R.string.msg_password_must_have_at_least_6_characters)
             return false
         }
         else
         {
-            txtInputpassword.error = null
+            txtInputPassword.error = null
         }
 
         return true

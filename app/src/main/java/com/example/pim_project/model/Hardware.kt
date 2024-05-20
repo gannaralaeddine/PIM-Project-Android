@@ -8,11 +8,13 @@ data class Hardware(
 
     val reference: String,
 
-    val quantity: String,
-
     val brand: String,
 
     val model: String,
+
+    val lab: String,
+
+    val isAvailable: Boolean,
 
     val userId: String
 

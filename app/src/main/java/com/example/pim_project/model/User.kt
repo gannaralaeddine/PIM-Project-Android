@@ -12,6 +12,9 @@ data class User(
     @SerializedName("firstName")
     var firstName:String,
 
+    @SerializedName("lastName")
+    var lastName:String,
+
     @SerializedName("espritIdentifier")
     var espritIdentifier:String,
 
