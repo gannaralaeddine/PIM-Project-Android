@@ -1,7 +1,6 @@
 package com.example.pim_project.utils
 
 import com.example.pim_project.model.*
-import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,9 +30,6 @@ interface ApiInterface
     @PUT("reset-password")
     fun resetPassword(@Query("email")email: String, @Query("password")password: String): Call<ResponseUser>
 
-    @POST("reset-password")
-    fun logOut(@Query("email")email: String, @Query("password")password: String): Call<ResponseUser>
-
 
     @PUT("user/update/profile")
     fun updateProfile(@Query("email") email: String,
@@ -53,28 +49,17 @@ interface ApiInterface
     @GET("user/getUserById")
     fun getUser(@Query("id")id: String): Call<ResponseUser>
 
-    //********************************************************
-
-    @POST("lab/add")
-    @FormUrlEncoded
-    fun labAdd(@Field("title") title:String, @Field("number") number: String): Observable<String>
 
 
+    @POST("booking/hardware-booking")
+    fun hardwareBooking(@Query("userId") userId:String, @Query("harwareId") harwareId: String, @Query("date") date: String, @Query("time") time: String
+               ): Call<ResponseUser>
 
 
-    @GET("user/getUserHikings")
-    fun getMyHikings(@Query("id")id: String): Call<ResponseUser>
+    @GET("hardware/getHardware")
+    fun getHardware(@Query("id")id: String): Call<Hardware>
 
-
-
-    // Hardware
-    @GET("hardware/list")
-    fun getHikings(): Call<List<Hardware>>
-
-
-    @PUT("hiking/participate")
-    fun hikingParticipate(@Query("id")userId: String?, @Query("hikingId")hikingId: String): Call<ResponseUser>
-
+//********************************************************
 
 
     companion object

@@ -101,4 +101,8 @@ class ProfileFragment : Fragment()
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        getProfileData(sharedPreferences.getString("userId", null))
+    }
 }

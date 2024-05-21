@@ -22,5 +22,9 @@ data class User(
     var classroom: String,
 
     @SerializedName("isVerified")
-    var isVerified: Boolean
+    var isVerified: Boolean,
+
+    @SerializedName("role")
+    var role: String,
+
 )

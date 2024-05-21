@@ -24,16 +24,16 @@ class HardwareAdapter(val context: FragmentActivity?, private var hardwareList: 
     {
         val hardware = hardwareList[position]
 
-
         holder.title.text = hardware.title
         holder.brand.text = hardware.brand
         holder.model.text = hardware.model
         holder.lab.text = hardware.lab
 
         holder.itemView.setOnClickListener{
+
             val intent = Intent(holder.itemView.context, HardwareReservation::class.java)
             intent.apply {
-                putExtra("id", hardware._id)
+                putExtra("hardwareId", hardware.id)
                 putExtra("title", hardware.title)
                 putExtra("organizer", hardware.brand)
                 putExtra("program", hardware.model)

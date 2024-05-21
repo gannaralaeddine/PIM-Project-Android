@@ -32,6 +32,11 @@
     <string name="esprit_identifier">Esprit Identifier</string>
     <string name="classroom">Classroom</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="are_you_sure_you_want_to_proceed">Are you sure you want to proceed ?</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hardware_list">Hardware list</string>
     <string name="title">Title</string>
@@ -67,6 +72,7 @@
     <string name="msg_user_already_exist">User already exist !</string>
     <string name="msg_hardware_created_successfully">Hardware created successfully</string>
     <string name="msg_error_getting_user_data">Error getting user data !</string>
+    <string name="msg_reservation_confirmed">Reservation confirmed</string>
 
 
 
@@ -74,4 +80,7 @@
 
 
     <string name="user_full_name"> %1$s %2$s</string>
+    <string name="select_reservation_date">Select reservation date</string>
+    <string name="next">Next</string>
+    <string name="select_reservation_time">Select reservation time</string>
 </resources>

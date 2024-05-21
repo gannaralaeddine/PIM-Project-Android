@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HardwareReservation">
+    tools:context=".PickTimeActivity">
 
     <include
         layout="@layout/toolbar" />
@@ -13,20 +13,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/select_reservation_date"
+        android:text="@string/select_reservation_time"
         android:textStyle="bold"
         android:textSize="30sp"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"/>
 
-    <DatePicker
-        android:id="@+id/reservation_date_picker"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/reservation_time_picker"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"/>
 
     <Button
-        android:id="@+id/btn_reservation_next"
+        android:id="@+id/btn_confirm_reservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

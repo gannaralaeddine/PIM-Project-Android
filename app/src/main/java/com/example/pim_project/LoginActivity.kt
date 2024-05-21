@@ -79,10 +79,12 @@ class LoginActivity : AppCompatActivity()
                     editor.putBoolean("isChecked", rememberMe.isChecked)
                     editor.putString("token", res.body()!!.token)
                     editor.putString("userId", res.body()!!.user._id)
+                    editor.putString("userRole", res.body()!!.user.role)
                     editor.apply()
 
                     Toast.makeText(this@LoginActivity, getString(R.string.msg_welcome), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    finish()
                     return
                 }
 

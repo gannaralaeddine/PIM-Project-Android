@@ -1,5 +1,6 @@
 package com.example.pim_project.fragments
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -63,10 +64,17 @@ class AddHardwareFragment : Fragment()
 
     private fun saveNewHardware()
     {
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage(getString(R.string.msg_loading))
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
         ApiInterface.create().createNewHardware(editTitle.text.toString(), editReference.text.toString(), editBrand.text.toString(), editModel.text.toString(), editLab.text.toString())
             .enqueue(object : Callback<ResponseUser> {
             override fun onResponse(call: Call<ResponseUser>, response: Response<ResponseUser>)
             {
+                if (progressDialog.isShowing) progressDialog.dismiss()
+
                 if ( response.code() == 201 )
                 {
                     resetFields()
@@ -75,7 +83,7 @@ class AddHardwareFragment : Fragment()
             }
             override fun onFailure(call: Call<ResponseUser>, t: Throwable)
             {
-
+                if (progressDialog.isShowing) progressDialog.dismiss()
                 Toast.makeText(requireContext(), "Error: " + t.message.toString(), Toast.LENGTH_LONG).show()
                 Log.e("error",t.message.toString())
             }
