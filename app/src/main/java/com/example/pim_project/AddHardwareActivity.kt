@@ -1,17 +1,14 @@
-package com.example.pim_project.fragments
+package com.example.pim_project
 
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
-import com.example.pim_project.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
@@ -19,8 +16,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class AddHardwareFragment : Fragment()
+class AddHardwareActivity : AppCompatActivity()
 {
+    private lateinit var toolbar: MaterialToolbar
+
     private lateinit var txtInputTitle: TextInputLayout
     private lateinit var txtInputReference: TextInputLayout
     private lateinit var txtInputBrand: TextInputLayout
@@ -34,37 +33,53 @@ class AddHardwareFragment : Fragment()
     private lateinit var editLab: TextInputEditText
 
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle? ): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
 
-        val view = inflater.inflate(R.layout.fragment_add_hardware, container, false)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_hardware)
 
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.title = getString(R.string.create_new_hardware)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
-        txtInputTitle = view.findViewById(R.id.add_hardware_textInput_title)
-        txtInputReference = view.findViewById(R.id.add_hardware_textInput_reference)
-        txtInputBrand = view.findViewById(R.id.add_hardware_textInput_brand)
-        txtInputModel = view.findViewById(R.id.add_hardware_textInput_model)
-        txtInputLab = view.findViewById(R.id.add_hardware_textInput_lab)
+        txtInputTitle = findViewById(R.id.add_hardware_textInput_title)
+        txtInputReference = findViewById(R.id.add_hardware_textInput_reference)
+        txtInputBrand = findViewById(R.id.add_hardware_textInput_brand)
+        txtInputModel = findViewById(R.id.add_hardware_textInput_model)
+        txtInputLab = findViewById(R.id.add_hardware_textInput_lab)
 
-        editTitle = view.findViewById(R.id.add_hardware_title)
-        editReference = view.findViewById(R.id.add_hardware_reference)
-        editBrand = view.findViewById(R.id.add_hardware_brand)
-        editModel = view.findViewById(R.id.add_hardware_model)
-        editLab = view.findViewById(R.id.add_hardware_lab)
+        editTitle = findViewById(R.id.add_hardware_title)
+        editReference = findViewById(R.id.add_hardware_reference)
+        editBrand = findViewById(R.id.add_hardware_brand)
+        editModel = findViewById(R.id.add_hardware_model)
+        editLab = findViewById(R.id.add_hardware_lab)
 
+        val hardwareId = intent.getStringArrayExtra("hardwareId")
 
-        view.findViewById<Button>(R.id.btn_add_hardware).setOnClickListener {
+        if (hardwareId != null)
+        {
+            Toast.makeText(this@AddHardwareActivity, "is update operation", Toast.LENGTH_SHORT).show()
+        }
+        else
+        {
+            Toast.makeText(this@AddHardwareActivity, "is not update operation", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<Button>(R.id.btn_add_hardware).setOnClickListener {
             if (checkFields())
             {
                 saveNewHardware()
             }
         }
 
-        return view
     }
 
     private fun saveNewHardware()
     {
-        val progressDialog = ProgressDialog(requireContext())
+        val progressDialog = ProgressDialog(this@AddHardwareActivity)
         progressDialog.setMessage(getString(R.string.msg_loading))
         progressDialog.setCancelable(false)
         progressDialog.show()
@@ -78,13 +93,13 @@ class AddHardwareFragment : Fragment()
                 if ( response.code() == 201 )
                 {
                     resetFields()
-                    Toast.makeText(requireContext(), getString(R.string.msg_hardware_created_successfully), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddHardwareActivity, getString(R.string.msg_hardware_created_successfully), Toast.LENGTH_LONG).show()
                 }
             }
             override fun onFailure(call: Call<ResponseUser>, t: Throwable)
             {
                 if (progressDialog.isShowing) progressDialog.dismiss()
-                Toast.makeText(requireContext(), "Error: " + t.message.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this@AddHardwareActivity, "Error: " + t.message.toString(), Toast.LENGTH_LONG).show()
                 Log.e("error",t.message.toString())
             }
         })

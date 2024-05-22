@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:layout_marginBottom="10dp">
-
-
     <LinearLayout
+
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center"
@@ -16,14 +15,13 @@
         android:orientation="vertical" >
 
         <include
-            layout="@layout/home_toolbar" />
-
+            layout="@layout/toolbar" />
 
         <TextView
-            android:id="@+id/text_hardware_list_nothing"
+            android:id="@+id/text_my_booking_nothing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_hardwares_available_right_now_try_later"
+            android:text="@string/you_don_t_have_any_bookings_yet"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="25sp"
@@ -32,7 +30,7 @@
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_hardware"
+            android:id="@+id/recycler_my_bookings"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             tools:listitem="@layout/item_hardware"

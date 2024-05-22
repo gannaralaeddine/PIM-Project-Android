@@ -1,6 +1,7 @@
 package com.example.pim_project
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -84,9 +85,6 @@ class PickTimeActivity : AppCompatActivity()
             {
                 if (progressDialog.isShowing) progressDialog.dismiss()
 
-                e("response.body()",response.body().toString())
-
-
                 if(response.body() != null)
                 {
                     getAvailableTimes(response.body()!!.dispoDates)
@@ -119,6 +117,7 @@ class PickTimeActivity : AppCompatActivity()
                     if(res.code() == 201)
                     {
                         Toast.makeText(this@PickTimeActivity, getString(R.string.msg_reservation_confirmed), Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@PickTimeActivity, MainActivity::class.java))
                     }
                     else
                     {

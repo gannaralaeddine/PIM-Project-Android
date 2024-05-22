@@ -13,7 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.example.pim_project.AdminActivity
 import com.example.pim_project.LoginActivity
+import com.example.pim_project.MyBookingsActivity
 import com.example.pim_project.R
 import com.example.pim_project.UpdateProfileActivity
 import com.example.pim_project.model.ResponseUser
@@ -27,6 +29,7 @@ class ProfileFragment : Fragment()
 {
     private lateinit var profileName: TextView
     private lateinit var profileEmail: TextView
+    private lateinit var adminDashboard: CardView
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
@@ -36,6 +39,11 @@ class ProfileFragment : Fragment()
 
         profileName = view.findViewById(R.id.profileName_profileFrag)
         profileEmail = view.findViewById(R.id.profileEmail_profileFrag)
+        adminDashboard = view.findViewById(R.id.admin_dashboard)
+
+        view.findViewById<CardView>(R.id.profile_fragment_my_booking).setOnClickListener {
+            startActivity(Intent(requireContext(), MyBookingsActivity::class.java))
+        }
 
         sharedPreferences = requireActivity().getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
         editor = sharedPreferences.edit()
@@ -45,7 +53,8 @@ class ProfileFragment : Fragment()
         view.findViewById<Button>(R.id.btn_log_out).setOnClickListener {
             editor.putBoolean("isChecked", false)
             editor.putString("token", null)
-            editor.putString("isUser", null)
+            editor.putString("userId", null)
+            editor.putString("userRole", null)
             editor.apply()
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finish()
@@ -54,6 +63,8 @@ class ProfileFragment : Fragment()
         view.findViewById<CardView>(R.id.profile_fragment_edit_profile).setOnClickListener {
             startActivity(Intent(context, UpdateProfileActivity::class.java))
         }
+
+        showAdminDashboard(sharedPreferences.getString("userRole", null).toString())
 
         return view
     }
@@ -104,5 +115,16 @@ class ProfileFragment : Fragment()
     override fun onResume() {
         super.onResume()
         getProfileData(sharedPreferences.getString("userId", null))
+    }
+
+    private fun showAdminDashboard(userRole: String)
+    {
+        if (userRole == "admin")
+        {
+            adminDashboard.visibility = View.VISIBLE
+            adminDashboard.setOnClickListener {
+                startActivity( Intent(context, AdminActivity::class.java) )
+            }
+        }
     }
 }

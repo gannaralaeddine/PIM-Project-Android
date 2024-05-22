@@ -36,7 +36,7 @@
     <string name="no">No</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_sure_you_want_to_proceed">Are you sure you want to proceed ?</string>
-
+    <string name="welcome_admin">Welcome admin</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hardware_list">Hardware list</string>
     <string name="title">Title</string>
@@ -75,12 +75,19 @@
     <string name="msg_reservation_confirmed">Reservation confirmed</string>
 
 
-
-
-
-
     <string name="user_full_name"> %1$s %2$s</string>
     <string name="select_reservation_date">Select reservation date</string>
     <string name="next">Next</string>
     <string name="select_reservation_time">Select reservation time</string>
+    <string name="hardware">Hardware</string>
+    <string name="admin_staff">Admin staff</string>
+    <string name="my_booking">My booking</string>
+    <string name="show_my_booking_list">Show my booking list</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="my_booking_list">My Booking list</string>
+    <string name="all_hardwares">All hardwares</string>
+    <string name="show_update_hardwares">Show, update hardwares</string>
+    <string name="no_hardwares_available_right_now_try_later">No hardwares available right now, try later !</string>
+    <string name="you_don_t_have_any_bookings_yet">You don\'t have any bookings yet</string>
 </resources>

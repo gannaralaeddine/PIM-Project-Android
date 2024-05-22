@@ -3,11 +3,14 @@ package com.example.pim_project.fragments
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pim_project.R
@@ -23,6 +26,7 @@ class HardwareFragment : Fragment()
 
     private lateinit var recyclerHardware: RecyclerView
     private lateinit var adapterHardware: HardwareAdapter
+    private lateinit var text_nothing: TextView
 
     var hardwareList: ArrayList<Hardware> = ArrayList()
 
@@ -31,6 +35,7 @@ class HardwareFragment : Fragment()
         val view: View = inflater.inflate(R.layout.fragment_hardware, container, false)
 
         recyclerHardware = view.findViewById(R.id.recycler_hardware)
+        text_nothing = view.findViewById(R.id.text_hardware_list_nothing)
 
         recyclerHardware.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
@@ -59,8 +64,15 @@ class HardwareFragment : Fragment()
                     {
                         hardwareList.add(data)
                     }
-                    adapterHardware = HardwareAdapter(requireActivity(), hardwareList)
-                    recyclerHardware.adapter = adapterHardware
+                    if (hardwareList.size == 0)
+                    {
+                        text_nothing.visibility = View.VISIBLE
+                    }
+                    else
+                    {
+                        adapterHardware = HardwareAdapter(requireActivity(), hardwareList)
+                        recyclerHardware.adapter = adapterHardware
+                    }
                 }
             }
 
@@ -71,5 +83,18 @@ class HardwareFragment : Fragment()
                 Log.e("error",t.message.toString())
             }
         })
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val toolbar: Toolbar = requireView().findViewById(R.id.home_toolbar)
+
+        (activity as? AppCompatActivity)?.setSupportActionBar(toolbar)
+
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.hardware_list)
+//        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 }

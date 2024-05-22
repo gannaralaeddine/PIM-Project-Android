@@ -59,6 +59,15 @@ interface ApiInterface
     @GET("hardware/getHardware")
     fun getHardware(@Query("id")id: String): Call<Hardware>
 
+
+    @GET("booking/my-booking-list")
+    fun getMyBookingList(@Query("userId")userId: String): Call<List<Booking>>
+
+    @GET("booking/booking-list")
+    fun getBookingList(): Call<List<Booking>>
+
+
+
 //********************************************************
 
 

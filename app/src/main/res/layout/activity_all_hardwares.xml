@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:layout_marginBottom="10dp">
-
-
     <LinearLayout
+
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:gravity="center"
@@ -16,11 +15,10 @@
         android:orientation="vertical" >
 
         <include
-            layout="@layout/home_toolbar" />
-
+            layout="@layout/toolbar" />
 
         <TextView
-            android:id="@+id/text_hardware_list_nothing"
+            android:id="@+id/text_all_hardwares_nothing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_hardwares_available_right_now_try_later"
@@ -32,10 +30,10 @@
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_hardware"
+            android:id="@+id/recycler_manage_hardwares"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            tools:listitem="@layout/item_hardware"
+            tools:listitem="@layout/item_hardware_delete"
             android:orientation="vertical"/>
 
     </LinearLayout>
