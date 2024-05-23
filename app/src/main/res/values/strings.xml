@@ -71,6 +71,7 @@
     <string name="msg_welcome">Welcome</string>
     <string name="msg_user_already_exist">User already exist !</string>
     <string name="msg_hardware_created_successfully">Hardware created successfully</string>
+    <string name="msg_hardware_updated_successfully">Hardware updated successfully</string>
     <string name="msg_error_getting_user_data">Error getting user data !</string>
     <string name="msg_reservation_confirmed">Reservation confirmed</string>
 
@@ -90,4 +91,10 @@
     <string name="show_update_hardwares">Show, update hardwares</string>
     <string name="no_hardwares_available_right_now_try_later">No hardwares available right now, try later !</string>
     <string name="you_don_t_have_any_bookings_yet">You don\'t have any bookings yet</string>
+    <string name="all_bookings">All bookings</string>
+    <string name="show_all_bookings">Show all bookings</string>
+    <string name="there_is_no_booking_yet">There is no booking yet !</string>
+    <string name="update_hardware">Update hardware</string>
+    <string name="update">Update</string>
+
 </resources>

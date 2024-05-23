@@ -31,19 +31,12 @@ class AddHardwareActivity : AppCompatActivity()
     private lateinit var editBrand: TextInputEditText
     private lateinit var editModel: TextInputEditText
     private lateinit var editLab: TextInputEditText
-
+    private lateinit var btnAddUpdate: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_hardware)
-
-        toolbar = findViewById(R.id.toolbar)
-        toolbar.title = getString(R.string.create_new_hardware)
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
 
         txtInputTitle = findViewById(R.id.add_hardware_textInput_title)
         txtInputReference = findViewById(R.id.add_hardware_textInput_reference)
@@ -57,24 +50,70 @@ class AddHardwareActivity : AppCompatActivity()
         editModel = findViewById(R.id.add_hardware_model)
         editLab = findViewById(R.id.add_hardware_lab)
 
-        val hardwareId = intent.getStringArrayExtra("hardwareId")
+        btnAddUpdate = findViewById(R.id.btn_add_hardware)
+        toolbar = findViewById(R.id.toolbar)
 
+
+        val hardwareId = intent.getStringExtra("hardwareId")
         if (hardwareId != null)
         {
-            Toast.makeText(this@AddHardwareActivity, "is update operation", Toast.LENGTH_SHORT).show()
+            toolbar.title = getString(R.string.update_hardware)
+            btnAddUpdate.text = getString(R.string.update)
+            editTitle.setText(intent.getStringExtra("hardwareTitle"))
+            editReference.setText(intent.getStringExtra("hardwareReference"))
+            editBrand.setText(intent.getStringExtra("hardwareBrand"))
+            editModel.setText(intent.getStringExtra("hardwareModel"))
+            editLab.setText(intent.getStringExtra("hardwareLab"))
         }
         else
         {
-            Toast.makeText(this@AddHardwareActivity, "is not update operation", Toast.LENGTH_SHORT).show()
+            toolbar.title = getString(R.string.create_new_hardware)
+
+        }
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
         }
 
-        findViewById<Button>(R.id.btn_add_hardware).setOnClickListener {
+        btnAddUpdate.setOnClickListener {
             if (checkFields())
             {
-                saveNewHardware()
+                if (hardwareId != null) {
+                    updateHardware()
+                }
+                else
+                {
+                    saveNewHardware()
+                }
             }
         }
 
+    }
+
+    private fun updateHardware() {
+        val progressDialog = ProgressDialog(this@AddHardwareActivity)
+        progressDialog.setMessage(getString(R.string.msg_loading))
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+        ApiInterface.create().updateHardware(intent.getStringExtra("hardwareId").toString(), editTitle.text.toString(), editReference.text.toString(), editBrand.text.toString(), editModel.text.toString(), editLab.text.toString())
+            .enqueue(object : Callback<ResponseUser> {
+                override fun onResponse(call: Call<ResponseUser>, response: Response<ResponseUser>)
+                {
+                    if (progressDialog.isShowing) progressDialog.dismiss()
+
+                    if ( response.code() == 200 )
+                    {
+                        Toast.makeText(this@AddHardwareActivity, getString(R.string.msg_hardware_updated_successfully), Toast.LENGTH_LONG).show()
+                    }
+                }
+                override fun onFailure(call: Call<ResponseUser>, t: Throwable)
+                {
+                    if (progressDialog.isShowing) progressDialog.dismiss()
+                    Toast.makeText(this@AddHardwareActivity, "Error: " + t.message.toString(), Toast.LENGTH_LONG).show()
+                    Log.e("error",t.message.toString())
+                }
+            })
     }
 
     private fun saveNewHardware()

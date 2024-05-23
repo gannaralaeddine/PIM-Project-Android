@@ -60,6 +60,11 @@ interface ApiInterface
     fun getHardware(@Query("id")id: String): Call<Hardware>
 
 
+    @PUT("hardware/updateHardware")
+    fun updateHardware(@Query("id") id: String, @Query("title") title: String, @Query("reference") reference: String, @Query("brand") brand: String,
+                       @Query("model") model: String, @Query("lab") lab: String): Call<ResponseUser>
+
+
     @GET("booking/my-booking-list")
     fun getMyBookingList(@Query("userId")userId: String): Call<List<Booking>>
 

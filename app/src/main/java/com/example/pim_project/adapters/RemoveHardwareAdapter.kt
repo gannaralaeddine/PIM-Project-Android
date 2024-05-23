@@ -1,10 +1,12 @@
 package com.example.pim_project.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pim_project.AddHardwareActivity
 import com.example.pim_project.R
 import com.example.pim_project.model.Hardware
 import com.example.pim_project.viewHolders.RemoveHardwareViewHolder
@@ -30,6 +32,17 @@ class RemoveHardwareAdapter(val context: FragmentActivity?, private var hardware
 
         holder.removeIcon.setOnClickListener {
             Toast.makeText(context, "Remove click !!", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, AddHardwareActivity::class.java)
+            intent.putExtra("hardwareId", hardware.id)
+            intent.putExtra("hardwareTitle", hardware.title)
+            intent.putExtra("hardwareReference", hardware.reference)
+            intent.putExtra("hardwareBrand", hardware.brand)
+            intent.putExtra("hardwareModel", hardware.model)
+            intent.putExtra("hardwareLab", hardware.lab)
+            context?.startActivity(intent)
         }
 
     }

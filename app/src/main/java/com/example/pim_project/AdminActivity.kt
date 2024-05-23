@@ -32,5 +32,9 @@ class AdminActivity : AppCompatActivity()
             startActivity(Intent(this, AddHardwareActivity::class.java))
         }
 
+        findViewById<CardView>(R.id.manage_bookings).setOnClickListener {
+            startActivity(Intent(this, AllBookingActivity::class.java))
+        }
+
     }
 }

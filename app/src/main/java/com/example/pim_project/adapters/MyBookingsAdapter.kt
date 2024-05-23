@@ -1,9 +1,11 @@
 package com.example.pim_project.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pim_project.AddHardwareActivity
 import com.example.pim_project.R
 import com.example.pim_project.model.Booking
 import com.example.pim_project.viewHolders.BookingViewHolder

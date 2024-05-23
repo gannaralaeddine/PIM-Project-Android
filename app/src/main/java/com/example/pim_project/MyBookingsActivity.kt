@@ -28,7 +28,7 @@ class MyBookingsActivity : AppCompatActivity()
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var textNothing: TextView
 
-    var bookingList: ArrayList<Booking> = ArrayList()
+    var myBookingList: ArrayList<Booking> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -65,20 +65,20 @@ class MyBookingsActivity : AppCompatActivity()
             {
                 if (progressDialog.isShowing) progressDialog.dismiss()
 
-                bookingList.clear()
+                myBookingList.clear()
                 if(response.body() != null)
                 {
                     for (data in response.body()!!)
                     {
-                        bookingList.add(data)
+                        myBookingList.add(data)
                     }
-                    if (bookingList.size == 0)
+                    if (myBookingList.size == 0)
                     {
                         textNothing.visibility = View.VISIBLE
                     }
                     else
                     {
-                        adapterBooking = MyBookingsAdapter(this@MyBookingsActivity, bookingList)
+                        adapterBooking = MyBookingsAdapter(this@MyBookingsActivity, myBookingList)
                         recyclerBookings.adapter = adapterBooking
                     }
                 }
