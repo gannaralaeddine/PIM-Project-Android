@@ -36,6 +36,7 @@
     <string name="no">No</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_sure_you_want_to_proceed">Are you sure you want to proceed ?</string>
+    <string name="are_you_sure_you_want_to_cancel_booking">Are you sure you want to cancel booking ?</string>
     <string name="welcome_admin">Welcome admin</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hardware_list">Hardware list</string>
@@ -76,6 +77,7 @@
     <string name="msg_reservation_confirmed">Reservation confirmed</string>
 
 
+    <string name="Booking_canceled">Booking canceled</string>
     <string name="user_full_name"> %1$s %2$s</string>
     <string name="select_reservation_date">Select reservation date</string>
     <string name="next">Next</string>
@@ -101,4 +103,5 @@
     <string name="booking">Booking</string>
     <string name="booking_details">Booking details</string>
     <string name="enter_the_verification_code_we_just_sent_you_on_your_e_mail_address">Enter the verification code we just sent you on your e-mail address.</string>
+    <string name="cancel_booking">Cancel booking</string>
 </resources>

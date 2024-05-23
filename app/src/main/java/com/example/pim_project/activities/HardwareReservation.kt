@@ -14,7 +14,6 @@ class HardwareReservation : AppCompatActivity()
 {
     private lateinit var toolbar: MaterialToolbar
 
-
     private lateinit var datePicker: DatePicker
 
     private lateinit var hardwareId: String
@@ -46,8 +45,7 @@ class HardwareReservation : AppCompatActivity()
             intent.putExtra("hardwareId", hardwareId)
             startActivity(intent)
         }
-
-
     }
+
 
 }

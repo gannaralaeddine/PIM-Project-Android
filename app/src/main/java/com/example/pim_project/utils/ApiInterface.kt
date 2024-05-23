@@ -39,21 +39,9 @@ interface ApiInterface
                       @Query("classroom") classroom: String): Call<ResponseUser>
 
 
-    @GET("hardware/list")
-    fun getHardwareList(): Call<List<Hardware>>
-
-    @POST("hardware/create")
-    fun createNewHardware(@Query("title")title: String, @Query("reference")reference: String, @Query("brand")brand: String, @Query("model")model: String, @Query("lab")lab: String): Call<ResponseUser>
-
-
     @GET("user/getUserById")
     fun getUser(@Query("id")id: String): Call<ResponseUser>
 
-
-
-    @POST("booking/hardware-booking")
-    fun hardwareBooking(@Query("userId") userId:String, @Query("harwareId") harwareId: String, @Query("date") date: String, @Query("time") time: String
-               ): Call<ResponseUser>
 
 // Hardware api
     @GET("hardware/getHardware")
@@ -64,6 +52,11 @@ interface ApiInterface
     fun updateHardware(@Query("id") id: String, @Query("title") title: String, @Query("reference") reference: String, @Query("brand") brand: String,
                        @Query("model") model: String, @Query("lab") lab: String): Call<ResponseUser>
 
+    @GET("hardware/list")
+    fun getHardwareList(): Call<List<Hardware>>
+
+    @POST("hardware/create")
+    fun createNewHardware(@Query("title")title: String, @Query("reference")reference: String, @Query("brand")brand: String, @Query("model")model: String, @Query("lab")lab: String): Call<ResponseUser>
 
 
 // Booking api
@@ -75,6 +68,14 @@ interface ApiInterface
 
     @GET("booking/retrieve-booking")
     fun getBooking(@Query("id")id: String): Call<Booking>
+
+    @POST("booking/hardware-booking")
+    fun hardwareBooking(@Query("userId") userId:String, @Query("harwareId") harwareId: String, @Query("date") date: String, @Query("time") time: String
+    ): Call<ResponseUser>
+
+
+    @PUT("booking/cancel-booking")
+    fun cancelBooking(@Query("id") id:String): Call<ResponseUser>
 
 //********************************************************
 

@@ -1,13 +1,18 @@
 package com.example.pim_project.activities
 
 import android.app.ProgressDialog
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.pim_project.R
 import com.example.pim_project.model.Booking
+import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import com.google.android.material.appbar.MaterialToolbar
 import retrofit2.Call
@@ -29,6 +34,9 @@ class BookingDetailsActivity : AppCompatActivity()
     private lateinit var textUserName: TextView
     private lateinit var textUserIdentifier: TextView
     private lateinit var textUserClassroom: TextView
+    private lateinit var btnCancelBooking: Button
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -54,9 +62,72 @@ class BookingDetailsActivity : AppCompatActivity()
         textUserName = findViewById(R.id.booking_details_user_name)
         textUserIdentifier = findViewById(R.id.booking_details_user_id)
         textUserClassroom = findViewById(R.id.booking_details_user_classroom)
+        btnCancelBooking =findViewById<Button>(R.id.btn_cancel_booking)
 
+        sharedPreferences = this.getSharedPreferences("prefs", MODE_PRIVATE)
+
+        btnCancelBooking.setOnClickListener {
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.confirmation))
+            builder.setMessage(getString(R.string.are_you_sure_you_want_to_cancel_booking))
+
+            builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
+
+                cancelBooking()
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton(getString(R.string.no)) { dialog, which ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+
+        }
+
+        if (sharedPreferences.getString("userRole", null).toString() == "user")
+        {
+            btnCancelBooking.visibility = View.VISIBLE
+        }
+        else
+        {
+            btnCancelBooking.visibility = View.GONE
+        }
 
         getHardware()
+    }
+
+    private fun cancelBooking()
+    {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage(getString(R.string.msg_loading))
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+
+        ApiInterface.create().cancelBooking(intent.getStringExtra("bookingId").toString()).enqueue(object: Callback<ResponseUser> {
+
+            override fun onResponse(call: Call<ResponseUser>, response: Response<ResponseUser>) {
+                if (progressDialog.isShowing) progressDialog.dismiss()
+
+                if (response.code() == 200)
+                {
+                    Toast.makeText(this@BookingDetailsActivity, getString(R.string.Booking_canceled), Toast.LENGTH_SHORT).show()
+                    return
+                }
+
+                if (response.code() == 404)
+                {
+                    Toast.makeText(this@BookingDetailsActivity,getString(R.string.msg_error_getting_user_data), Toast.LENGTH_SHORT).show()
+                    return
+                }
+
+            }
+            override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
+                if (progressDialog.isShowing) progressDialog.dismiss()
+                Toast.makeText(this@BookingDetailsActivity, t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun getHardware()
