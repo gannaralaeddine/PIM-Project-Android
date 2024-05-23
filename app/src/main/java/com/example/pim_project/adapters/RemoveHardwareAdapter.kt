@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pim_project.AddHardwareActivity
+import com.example.pim_project.activities.AddHardwareActivity
 import com.example.pim_project.R
 import com.example.pim_project.model.Hardware
 import com.example.pim_project.viewHolders.RemoveHardwareViewHolder

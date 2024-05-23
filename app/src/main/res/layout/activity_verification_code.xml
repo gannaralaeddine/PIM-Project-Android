@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VerificationCodeActivity">
+    tools:context=".activities.VerificationCodeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/ic_key"/>
+            android:background="@drawable/ic_key"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:layout_width="match_parent"
@@ -36,7 +37,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:textSize="17sp"
-            android:text="Enter the verification code we just sent you on your e-mail address." />
+            android:text="@string/enter_the_verification_code_we_just_sent_you_on_your_e_mail_address" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/verificationCode_txtInput_code"

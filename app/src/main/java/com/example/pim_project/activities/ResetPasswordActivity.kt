@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import com.example.pim_project.R
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import com.example.pim_project.utils.Conf
@@ -110,7 +111,7 @@ class ResetPasswordActivity : AppCompatActivity()
                     Toast.makeText(this@ResetPasswordActivity, "Password updated successfully", Toast.LENGTH_SHORT).show()
 
                     val intentLogin = Intent(this@ResetPasswordActivity, LoginActivity::class.java)
-                    intentLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intentLogin)
                     finish()
                     return

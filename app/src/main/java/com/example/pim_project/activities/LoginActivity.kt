@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.pim_project.R
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import com.google.android.material.textfield.TextInputLayout

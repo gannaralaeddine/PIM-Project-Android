@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import com.example.pim_project.R
 
 @SuppressLint("CustomSplashScreen")
 @Suppress("DEPRECATION")

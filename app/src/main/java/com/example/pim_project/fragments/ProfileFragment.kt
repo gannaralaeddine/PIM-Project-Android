@@ -13,11 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.example.pim_project.AdminActivity
-import com.example.pim_project.LoginActivity
-import com.example.pim_project.MyBookingsActivity
+import com.example.pim_project.activities.AdminActivity
+import com.example.pim_project.activities.LoginActivity
+import com.example.pim_project.activities.MyBookingsActivity
 import com.example.pim_project.R
-import com.example.pim_project.UpdateProfileActivity
+import com.example.pim_project.activities.UpdateProfileActivity
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import retrofit2.Call

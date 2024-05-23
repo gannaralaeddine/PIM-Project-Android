@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.pim_project.R
 import com.example.pim_project.model.DispoDate
 import com.example.pim_project.model.Hardware
 import com.example.pim_project.model.ResponseUser

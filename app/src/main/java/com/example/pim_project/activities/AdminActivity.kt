@@ -1,9 +1,10 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import com.example.pim_project.R
 import com.google.android.material.appbar.MaterialToolbar
 
 class AdminActivity : AppCompatActivity()

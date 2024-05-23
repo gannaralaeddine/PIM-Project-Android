@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import com.example.pim_project.R
 import com.google.android.material.textfield.TextInputLayout
 
 class VerificationCodeActivity : AppCompatActivity()

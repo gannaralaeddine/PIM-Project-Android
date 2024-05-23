@@ -1,8 +1,9 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import com.example.pim_project.R
 import com.example.pim_project.fragments.HardwareFragment
 import com.example.pim_project.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView

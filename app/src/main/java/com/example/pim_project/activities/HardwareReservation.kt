@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.DatePicker
+import com.example.pim_project.R
 import com.google.android.material.appbar.MaterialToolbar
 import java.util.Calendar
 

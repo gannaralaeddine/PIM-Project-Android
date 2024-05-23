@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pim_project.AddHardwareActivity
 import com.example.pim_project.R
+import com.example.pim_project.activities.BookingDetailsActivity
 import com.example.pim_project.model.Booking
 import com.example.pim_project.viewHolders.BookingViewHolder
 
@@ -29,6 +29,12 @@ class MyBookingsAdapter(val context: FragmentActivity?, private var bookingList:
         holder.lab.text = booking.hardware.lab
         holder.date.text = booking.date
         holder.time.text = booking.time
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, BookingDetailsActivity::class.java)
+            intent.putExtra("bookingId", booking.id)
+            context?.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = bookingList.size

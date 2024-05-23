@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pim_project.HardwareReservation
+import com.example.pim_project.activities.HardwareReservation
 import com.example.pim_project.R
 import com.example.pim_project.model.Hardware
 import com.example.pim_project.viewHolders.HardwareViewHolder

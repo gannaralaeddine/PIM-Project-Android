@@ -1,4 +1,4 @@
-package com.example.pim_project
+package com.example.pim_project.activities
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pim_project.R
 import com.example.pim_project.model.ResponseUser
 import com.example.pim_project.utils.ApiInterface
 import com.google.android.material.appbar.MaterialToolbar

@@ -39,10 +39,10 @@
     <string name="welcome_admin">Welcome admin</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hardware_list">Hardware list</string>
-    <string name="title">Title</string>
-    <string name="brand">Brand</string>
-    <string name="model">Model</string>
-    <string name="lab_number">Lab number</string>
+    <string name="title">Title:</string>
+    <string name="brand">Brand:</string>
+    <string name="model">Model:</string>
+    <string name="lab_number">Lab number:</string>
     <string name="go_to">go_to</string>
     <string name="admin_dashboard">Admin dashboard</string>
     <string name="edit_profile_informations">Edit profile informations</string>
@@ -52,7 +52,7 @@
     <string name="my_profile">My profile</string>
     <string name="sign_out">Sign out</string>
     <string name="create_new_hardware">Create new hardware</string>
-    <string name="reference">Reference</string>
+    <string name="reference">Reference:</string>
     <string name="save">Save</string>
     <string name="updating_data">Updating data …</string>
     <string name="reservation">Reservation</string>
@@ -96,5 +96,9 @@
     <string name="there_is_no_booking_yet">There is no booking yet !</string>
     <string name="update_hardware">Update hardware</string>
     <string name="update">Update</string>
-
+    <string name="hardware_informations">Hardware informations</string>
+    <string name="user_informations">User informations</string>
+    <string name="booking">Booking</string>
+    <string name="booking_details">Booking details</string>
+    <string name="enter_the_verification_code_we_just_sent_you_on_your_e_mail_address">Enter the verification code we just sent you on your e-mail address.</string>
 </resources>
